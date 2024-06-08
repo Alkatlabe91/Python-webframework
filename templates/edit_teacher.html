@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/global.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+
+    <title>My profile</title>
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <div class="table-container">
+        <form method="post" action="{{ url_for('teachers.update_teacher', teacher_id = teacher.get('teacher_id', ''))}}" class="login-form card">
+            <div class="input-group">
+        <label for="display_name">Display_name:</label>
+        <input type="text" class="form-input"  name="display_name" value="{{ teacher.get('display_name', '') }}" >
+    </div>
+    <div class="input-group">
+        <label for="username">Username:</label>
+        <input type="text" class= "form-input" name="username" value="{{ teacher.get('display_name', '') }}" >
+    </div>
+    <div class="form-group">
+        <label for="is_admin">Is Admin:</label>
+        <select class="form-select" id="is_admin" name="is_admin">
+            <option value="0" {% if teacher.get('is_admin', 0) == 0 %}selected{% endif %}>Nee</option>
+            <option value="1" {% if teacher.get('is_admin', 0) == 1 %}selected{% endif %}>Ja</option>
+        </select>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+{% if error %}
+         <p class='error'>{{ error }}</p>
+       {% endif %}
+    {% include 'footer.html' %}
+
+  </body>
+</html>

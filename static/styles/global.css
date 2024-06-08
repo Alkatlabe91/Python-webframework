@@ -1,0 +1,366 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: rgba(240, 242, 245, 1) !important;
+}
+.error {
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+nav {
+  background: #fff;
+  box-shadow: 0 3px 8px 0 rgba(4, 31, 116, 0.3);
+  min-height: 70px;
+  padding: 10px;
+  z-index: 999;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  align-items: center;
+}
+nav .nav-item{
+  margin: 10px;
+}
+nav .nav-link{
+  color: rgba(68, 0, 127, 0.944)!important;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.primary-button {
+  background-image: linear-gradient(90deg, #0038c6, #2467fa);
+  border-radius: 10px;
+  align-items: center;
+  background: #004df5;
+  border: 0;
+  border-radius: 10px;
+  color: #fff;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-justify-content: center;
+  justify-content: center;
+  min-height: 40px;
+  padding-left: 17px;
+  padding-right: 17px;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  width: auto;
+  cursor: pointer;
+}
+
+.secondary-button {
+  background-color: #4ad866;
+  border: 0;
+  border-radius: 10px;
+  color: #fff;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-justify-content: center;
+  justify-content: center;
+  min-height: 40px;
+  padding-left: 17px;
+  padding-right: 17px;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  width: auto;
+  cursor: pointer;
+}
+.input-group {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: 0.15s ease-in-out;
+  width: 100%;
+}
+
+.card {
+  background: #fff;
+  box-shadow: 0 3px 8px 0 rgba(4, 31, 116, 0.3);
+}
+
+.form-input {
+  background: #f9fafe;
+  border: 1px solid #c3d0ed;
+  border-radius: 8px;
+  height: 40px;
+  padding: 0 10px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: 50px auto;
+  padding: 20px;
+}
+.notes-container {
+  width: 90%;
+  margin: 30px auto;
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  padding: 10px;
+}
+.notes-container table {
+  margin-top: 20px;
+  border: none;
+}
+.notes-header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.popup {
+  width: 85%;
+  min-height: 200px;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Styles for the overlay */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.popup-note-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+.category-input {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  align-items: center;
+}
+.category-input div {
+  display: flex;
+  flex-direction: column;
+}
+.category-input div button {
+  margin-top: 20px;
+  margin-left: auto;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+}
+/* .generate-open-question {
+  position: absolute;
+  bottom: 19px;
+  width: 50%;
+} */
+#questions-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  max-height: 250px;
+  overflow: auto;
+}
+
+#questions-list li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: #f9fafe;
+  border-radius: 20px;
+  width: 80%;
+  margin: 10px auto;
+}
+
+#questions-list li textarea {
+  width: 80%;
+  background: #f9fafe;
+  min-height: 50px;
+  border: 1px solid #c3d0ed;
+  border-radius: 8px;
+  outline: navajowhite;
+  margin-right: 20px;
+}
+
+#questions-list li button {
+  margin-left: auto;
+}
+
+.card-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.card-button img {
+  width: 20px;
+  height: 20px;
+}
+
+.question-action {
+  margin-top: auto;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+.question-action button { 
+  width: 200px;
+  margin-right: 20px;
+  font-size: 15px;
+}
+.note-row-action {
+  display: flex;
+  align-items: center;
+  
+}
+.note-row-action .btn{
+  display: flex;
+  align-items: center;
+  margin: 2px;
+  
+}
+.table-container { 
+  max-height: 60vh;
+  overflow: auto;
+}
+.filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+table {
+  font-family: arial, sans-serif;
+  width: 100%;
+  font-size: 14px;
+  border-collapse: collapse;
+}
+.space-around {
+  margin: 0px 20px;
+}
+table thead th {
+  color: #000;
+  background: transparent;
+  padding: 15px;
+  border: 1px solid #ebebec;
+  font-weight: bold;
+}
+
+table tr {
+  background: #ffffff;
+}
+
+table tr td {
+  border: 1px solid #e6edf1;
+  padding: 15px;
+}
+@media (min-width: 576px){
+  .container, .container-sm {
+    max-width: 900px!important;
+  }
+}
+
+
+@media only screen and (max-width: 640px) {
+  table thead {
+    display: none;
+  }
+
+  table tbody {
+    display: block;
+  }
+
+  table tbody tr td {
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+
+  table tbody tr {
+    margin-bottom: 20px;
+    display: block;
+    border: 1px solid #4d9749;
+    background: #f9f9f9;
+    overflow: hidden;
+  }
+
+  table tbody td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    width: 30%;
+    display: flex;
+    /* background: #4d9749; */
+    color: #000;
+    padding: 15px;
+    margin-inline-end: 10px;
+  }
+}
+
+footer { 
+display: flex;
+justify-content: space-around;
+align-items: center;
+width: 100%;
+bottom: 0;
+height: 10vh;
+background-color: #e8e8e8;
+}
+
+.input-group .form-control{
+
+    min-width: 65%!important;
+  }
+
+
+
+.input-group .form-select{
+
+    min-width: 65%!important;
+  }
+
+
+
+
+
+.input-group-text{
+  max-width: 65%!important;
+}
+
+.action .btn{
+  margin: 10px!important;
+}
+.text-question{
+
+  width: 100%;
+  height: 100px;
+  border: 1px solid #c3d0ed;
+  border-radius: 8px;
+  outline: navajowhite;
+  margin-right: 20px;
+  resize: none;
+}

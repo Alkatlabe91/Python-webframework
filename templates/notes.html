@@ -1,0 +1,106 @@
+<div class="card container notes-container">
+
+    <div class="container notes-header">
+        <a href="/notes/new" class="btn btn-success" style="height: 40px; margin-left: auto;">Nieuwe notitie</a>
+        <a href="{{ url_for('notes.export_csv') }}" class="btn btn-info" style="height: 40px; margin-left: auto;">Export</a>
+    </div>
+
+    <div class="container-fluid">
+        <form method="get" action="{{ url_for('index') }}">
+            <div class="container filter-container">
+                <div class="input-group mb-3">
+                    <label for="is_public" class="input-group-text">Title:</label>
+                    <input class="form-control" type="text" name="search_title" value="{{ request.args.get('search_title') if request.args.get('search_title') is not none else '' }}">
+                </div>
+
+                <div class="input-group mb-3">
+                    <label for="category_filter" class="input-group-text">Category:</label>
+                    <select name="category_filter" class="form-select">
+                        <option value="">All Categories</option>
+                        {% for category in categories %}
+                        <option value="{{ category }}" {% if category==request.args.get('category_filter') %}selected{% endif %}>
+                            {{ category }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-check form-switch mb-3 container">
+                    <input type="checkbox" class="form-check-input" name="has_exam_question" {% if request.args.get('has_exam_question') %}checked{% endif %}>
+                    <label for="has_exam_question" class="form-check-label">Has Exam Question</label>
+                </div>
+
+                <div class="form-check form-switch mb-3 container">
+                    <input type="checkbox" class="form-check-input" name="is_public" {% if request.args.get('is_public') %}checked{% endif %}>
+                    <label for="is_public" class="form-check-label">Van alle docenten</label>
+                </div>
+              
+                <button class="btn btn-warning" type="submit" >Search</button>
+               
+            </div>
+        </form>
+    </div>
+
+    <div class="table-container">
+     <p >
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+                    <th>NO.</th>
+                    <th>Title</th>
+                    <th>Notitie</th>
+                    <th>Met Vragen</th>
+                    <th>Categorie</th>
+                    <th>Docent</th>
+                    <th>Aangemaakt</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                {% if (
+                ((item.is_public and request.args.get('is_public') == 'on') or item.teacher_id == user_id) and
+                (not request.args.get('search_title') or request.args.get('search_title').lower() in item.title.lower())
+                and
+                (not request.args.get('category_filter') or request.args.get('category_filter') == item.category) and
+                (not request.args.get('has_exam_question') or (request.args.get('has_exam_question') == 'on' and
+                item.exam_question is not none))
+                ) %}
+                <tr>
+                    <td data-label="NO.">{{ loop.index0 + 1 }}</td>
+                    <td data-label="Title">{{ item.title.lower() }}</td>
+                    <td data-label="Notitie">{{ item.note }}</td>
+                    <td data-label="Met Vragen">{% if item.exam_question is not none %}Yes{% else %}No{% endif %}</td>
+                    <td data-label="Categorie">{{ item.category }}</td>
+                    <td data-label="Docent">{{ item.teacher_name }}</td>
+                    <td data-label="Aangemaakt">{{ item.date_created }}</td>
+                    <td data-label="Action">
+                        <div class="note-row-action">
+                            <a class="btn btn-warning" data-note-id="{{ item.note_id }}" href="/notes/question/{{ item.note_id }}">
+                                <i class="bi bi-question-square"></i>
+                            </a>
+                            {% if item.teacher_id == user_id or is_admin %}
+                            <a class="btn btn-success" data-note-id="{{ item.note_id }}" href="/notes/edit/{{ item.note_id }}">
+                                <i class="bi bi-pen"></i>
+                            </a>
+                            {% endif %}
+                         
+                            {% if item.teacher_id == user_id or is_admin %}
+
+                            <form method="DELETE" action="/notes/delete_note/{{item.note_id}}">
+                                <a class="btn btn-danger" data-note-id="{{ item.note_id }}" href="/notes/delete_note/{{ item.note_id }}">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </form>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+     </p>
+    </div>
+</div>
+
